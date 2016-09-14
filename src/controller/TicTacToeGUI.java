@@ -13,6 +13,7 @@ import model.RandomAI;
 import model.StopperAI;
 import model.TicTacToeGame;
 import view.ButtonView;
+import view.TextFieldView;
 
 /**
  * Play TicTacToe the computer that can have different AIs to beat you.  Select the Options menus to begin
@@ -41,6 +42,7 @@ public class TicTacToeGUI extends JFrame {
 
   private TicTacToeGame theGame;
   private ButtonView buttonView;
+  private TextFieldView textView;
   private JPanel currentView;
   public static final int width = 300;
   public static final int height = 360;
@@ -54,13 +56,15 @@ public class TicTacToeGUI extends JFrame {
     setupMenus();
     initializeGameForTheFirstTime();
     buttonView = new ButtonView(theGame, width, height);
+    textView = new TextFieldView(theGame, width, height);
     addObservers();
     // Set default view
-    setViewTo(buttonView);
+    setViewTo(textView);
   }
 
   private void addObservers() {
     theGame.addObserver(buttonView);
+    theGame.addObserver(textView);
   }
 
   public void initializeGameForTheFirstTime() {
@@ -81,6 +85,12 @@ public class TicTacToeGUI extends JFrame {
     jmi2Nest.add(beginner);
     JMenuItem intermediate = new JMenuItem("Stopper");
     jmi2Nest.add(intermediate);
+    JMenuItem views = new JMenu("Views");
+    JMenuItem btnView = new JMenuItem("JButton");
+    JMenuItem txtView = new JMenuItem("JTextField");
+    menu.add(views);
+    views.add(btnView);
+    views.add(txtView);
 
     // Set the menu bar
     JMenuBar menuBar = new JMenuBar();
@@ -92,6 +102,9 @@ public class TicTacToeGUI extends JFrame {
     newGame.addActionListener(menuListener);
     beginner.addActionListener(menuListener);
     intermediate.addActionListener(menuListener);
+    btnView.addActionListener(menuListener);
+    txtView.addActionListener(menuListener);
+    
   }
 
   private void setViewTo(JPanel newView) {
@@ -124,6 +137,12 @@ public class TicTacToeGUI extends JFrame {
       if (text.equals("Random")) {
         theGame.setComputerPlayerStrategy(new RandomAI());
       }
+      if (text.equals("JButton")) {
+          setViewTo(buttonView);
+        }
+      if (text.equals("JTextField")) {
+    	  setViewTo(textView);
+        }
     }
   }
 }

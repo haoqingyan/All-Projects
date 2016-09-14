@@ -131,7 +131,7 @@ public class ButtonView extends JPanel implements OurObserver {
 //    private void setButtonsDisabled() {
 //      for (int i = 0; i < buttons.length; i++)
 //        for (int j = 0; j < buttons[i].length; j++)
-//          buttons[i][j].setEnabled(false);
+//         buttons[i][j].setEnabled(false);
 //    }
   }
 }
