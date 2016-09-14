@@ -77,7 +77,7 @@ public class TextFieldView extends JPanel implements OurObserver {
 					JOptionPane.showMessageDialog(null,
 							"Selection not available");
 				} else {
-					
+					theGame.choose(row, col);
 				}
 				if (theGame.tied()) {
 					moveButton.setText("Tied");
