@@ -64,6 +64,8 @@ public class TextFieldView extends JPanel implements OurObserver {
 			public void mouseClicked(MouseEvent e) {
 				if (!moveButton.isEnabled() || textFieldRow.getText().isEmpty()
 						|| textFieldCol.getText().isEmpty()) {
+					textFieldRow.setText("");
+					textFieldCol.setText("");
 					return;
 				}
 				int row = Integer.parseInt(textFieldRow.getText());
@@ -73,9 +75,15 @@ public class TextFieldView extends JPanel implements OurObserver {
 						|| col >= theGame.getTicTacToeBoard()[0].length) {
 					JOptionPane.showMessageDialog(null,
 							"Selection not available");
+					textFieldRow.setText("");
+					textFieldCol.setText("");
+					return;
 				} else if (!theGame.available(row, col)) {
 					JOptionPane.showMessageDialog(null,
 							"Selection not available");
+					textFieldRow.setText("");
+					textFieldCol.setText("");
+					return;
 				} else {
 					theGame.choose(row, col);
 				}
